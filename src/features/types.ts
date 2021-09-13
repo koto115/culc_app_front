@@ -8,14 +8,18 @@ export interface USER_STATE {
   isLoginView: boolean;
 }
 export interface SCHEDULE {
-  time: number;
-  mon_sub: string;
-  tue_sub: string;
-  wed_sub: string;
-  thu_sub: string;
-  fri_sub: string;
-  sat_sub: string;
+  id: number;
+  nickName: string;
+  subs: string[];
+}
+export interface NEW_SCHEDULE {
+  nickName: string;
+  subs: string[];
 }
 export interface BEFORE {
   value1: string | null;
+}
+export interface PROPS_LOGIN {
+  username: string;
+  password: string;
 }

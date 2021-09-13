@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
 import styled from 'styled-components'
-import { selectIsLogin } from '../auth/authFunc';
-import { useSelector } from 'react-redux';
+import { Button } from '@material-ui/core';
+import { resetOpenSchedule, resetSubsArray, setOpenSignIn } from '../auth/authFunc';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../app/store';
 
 const ScTable = styled.table`
   border: 1px solid;
   border-radius: 5px;
-  margin: 0 auto 30px auto;
+  margin-bottom:30px;
 `
 
 const ScTh = styled.tr`
@@ -42,10 +43,19 @@ const ScTd = styled.td`
 `
 
 const NewSchedule: React.FC<{value1: string[]}> = ({value1}) => {
-  const isLoginSelect = useSelector(selectIsLogin);
+  const dispatch: AppDispatch = useDispatch()
 
   return (
-    <div>
+    <div style={{width: '710px', margin: '0 auto'}}>
+      <Button
+        style={{float:'right', marginRight: ''}}
+        onClick={() => {
+          localStorage.removeItem("localJWT")
+          dispatch(resetOpenSchedule())
+          dispatch(resetSubsArray({id: 0, userSchedule: 0, nickName: "", subs: [""],}))
+          dispatch(setOpenSignIn())
+        }}>Logout
+      </Button>
       <ScTable>
         <thead>
           <ScTh style={{backgroundColor: '#DCDCDC',
